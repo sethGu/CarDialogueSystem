@@ -136,9 +136,13 @@ class GraphDatabase(KnowledgeBase):
             if v is not None:
                 use_attributes[slot_neo4j_dict[k]] = v
 
+        print('use_attributes', use_attributes)
+        # 如果属性全为空则直接返回
+        if not use_attributes:
+            return []
+
         base_parameters = self.graph.nodes.match('车型基本参数', **use_attributes).all()
         entities = []
-        import sys
         for base_parameter in base_parameters:
             nodes = self.graph.match(nodes={base_parameter}, r_type='基本参数').all()
             for node in nodes:

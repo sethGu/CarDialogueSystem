@@ -156,9 +156,7 @@ class ActionQueryattribute2carmodel(Action):
         energy_type = tracker.get_slot('energy_type')
         time2market = tracker.get_slot('time2market')
         listed_items = tracker.get_slot('listed_items')
-        SlotSet("car_body", None)
-        SlotSet("energy_type", None)
-        SlotSet("time2market", None)
+        reset_attribute = [SlotSet("car_body", None), SlotSet("energy_type", None), SlotSet("time2market", None)]
         attribute_dict = {}
         attribute_dict['body_structure'] = car_body
         attribute_dict['energy_type'] = energy_type
@@ -167,7 +165,17 @@ class ActionQueryattribute2carmodel(Action):
         else:
             attribute_dict['time2market'] = None
         graph_database = GraphDatabase()
+        print('********query car model by attribute************')
+        print(tracker.get_slot('car_body'))
+        print(attribute_dict)
+        print(tracker.latest_message)
         car_model_list = graph_database.query_attribute2entity(attribute_dict)
+        print(car_model_list)
+
+        if not car_model_list:
+            dispatcher.utter_message(text="没有符合条件的车型!")
+            return []
+
         dispatcher.utter_message(template="utter_answer",
                                  answer="小通一共找到" + str(len(car_model_list)) + "个车型，由于篇幅限制，为您列出以下几种：")
         car_model_list_slot = []
@@ -179,7 +187,7 @@ class ActionQueryattribute2carmodel(Action):
             car_model_list_slot.append(e)
         slots = [
             SlotSet("listed_items", car_model_list_slot)
-        ]
+        ] + reset_attribute
         return slots
 
 
