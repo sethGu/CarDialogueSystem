@@ -1,0 +1,76 @@
+version: "2.0"
+
+rules:
+  - rule: greet
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: affirm
+    steps:
+      - intent: affirm
+      - action: utter_affirm
+
+  - rule: bye
+    steps:
+      - intent: bye
+      - action: utter_bye
+
+  - rule: deny
+    steps:
+      - intent: deny
+      - action: utter_deny
+
+  - rule: help
+    steps:
+      - intent: help
+      - action: utter_help
+
+  - rule: out_of_scope
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+
+  - rule: query_car_series
+    steps:
+      - intent: query_car_series
+      - action: action_query_car_series
+
+  - rule: query_car_series_to_car_model
+    steps:
+      - intent : query_car_series_to_car_model
+      - action : action_query_car_series_to_car_model
+
+  - rule: query_car_model_by_attribute
+    steps:
+      - intent : query_car_model_by_attribute
+      - action : action_query_car_model_by_attribute
+
+  - rule: query_attribute_in_car_model
+    steps:
+      - intent : query_attribute_in_car_model
+      - action : action_query_attribute_in_car_model
+
+  - rule: resolve_entity
+    steps:
+      - intent : resolve_entity
+      - action : action_resolve_entity
+
+
+
+
+
+#  - rule: activate car_form
+#    steps:
+#      - intent: requset_car_info
+#      - action: car_form
+#      - active_loop: car_form
+#
+#  - rule: deactivate car_form
+#    condition:
+#      - active_loop: car_form
+#    steps:
+#      - action: car_form
+#      - active_loop: null
+#      - action: action_search_car_info
+#    wait_for_user_input: false

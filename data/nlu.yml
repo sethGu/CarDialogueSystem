@@ -1,0 +1,234 @@
+version: "2.0"
+nlu:
+  - intent: greet
+    examples: |
+      - 你好
+      - 早上好
+      - 你好，机器人
+      - 下午好
+      - 大家好
+      - 你好，有人在吗
+      - 嘿
+
+  - intent: affirm
+    examples: |
+      - 是的
+      - 没错
+      - 就这样吧
+      - 好的
+      - 我喜欢这个
+      - 可以，这个不错
+  - intent: bye
+    examples: |
+      - 再见
+      - 晚安
+      - 拜拜
+      - 我要走了
+      - 等会再说
+      - 现在先再见了
+      - 拜
+      - 再见，很高兴和你交谈
+      - 再见，小通
+      - 再见，机器人
+      - 拜拜，机器人
+      - 那么再见了
+      - 再见
+
+  - intent: deny
+    examples: |
+      - 不
+      - 不用了，谢谢
+      - 额，算了
+      - 这个不适合我
+      - 我不喜欢这个
+      - 还有其他的吗
+  - intent: help
+    examples: |
+      - 你能做什么
+      - 我该怎么问你
+      - 你能怎么帮助我
+      - 我需要你的帮助
+      - 帮我
+      - 我卡住了
+      - 我不知道该做什么
+      - 我该怎么做
+  - intent: out_of_scope
+    examples: |
+      - 我想吃泰国菜
+      - 哪里有最近的加油站
+      - 明天什么天气
+
+  - intent: query_car_series
+    examples: |
+      - 大通有哪些车系
+      - 请告诉我有哪些车系
+      - 有哪些车系
+      - 车系有哪些
+      - 车系
+
+
+
+  - intent: query_car_series_to_car_model
+    examples: |
+      - [上汽大通MAXUS T70](car_series)有哪些车
+      - [大通T70系列](car_series)有哪些车
+      - [T70系列](car_series)有哪些车
+      - [大通T70](car_series)有哪些车
+      - [大通T70系列](car_series)有哪些
+      - [大通T70系列](car_series)
+      - [T70系列](car_series)
+      - 请告诉我[大通T70系列](car_series)有哪些车
+
+
+  - intent: query_car_model_by_attribute
+    examples: |
+      - [皮卡](car_body)有哪些
+      - [SUV](car_body)有哪些
+      - [皮卡](car_body)的车身的车有哪些
+      - 哪些车是[皮卡](car_body)
+      - 哪些车是[SUV](car_body)
+      - [柴油](energy_type)的车有哪些
+      - [汽油](energy_type)的车有哪些
+      - [纯电动](energy_type)的车有哪些
+      - [插电式混合动力](energy_type)的车有哪些
+      - [氢燃料](energy_type)的车
+      - [2021年上市](time2market)的车有哪些
+      - [2020年](time2market)的车有哪些
+      - [20年上市](time2market)的车有哪些
+      - [21年](time2market)的车有哪些
+      - [纯电动](energy_type)的[皮卡](car_body)有哪些
+      - [汽油](energy_type)的[SUV](car_body)有哪些
+
+
+  - intent: query_attribute_in_car_model
+    examples: |
+      - [2021款 1.5T 自动尊享版](car_series)的[发动机](relationship)怎么样
+      - [2021款 1.5T 自动尊享版](car_series)的[发动机](relationship)
+      - [2021款 1.5T 自动尊享版](car_series)的[变速箱](relationship)怎么样
+      - [2021款 1.5T 自动尊享版](car_series)的[基本参数](relationship)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[底盘转向](relationship)怎么样
+      - [2021款 1.5T 自动尊享版](car_series)的[车身](relationship)怎么样
+      - [2021款 1.5T 自动尊享版](car_series)的[车轮制动](relationship)怎么样
+      - [2021款 1.5T 自动精英版](car_series)的[发动机](relationship)怎么样
+      - [2021款 1.5T 自动豪华版](car_series)的[发动机](relationship)怎么样
+      - [2021款 1.5T 自动极客全配版](car_series)的[发动机](relationship)怎么样
+      - [2021款 1.5T 自动尊享版](car_series)的[整车质保](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[整车质保](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[车身结构](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[上市时间](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[最大功率(kW)](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[缸盖材料](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[缸体材料](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[供油方式](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[环保标准](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[进气形式](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)的[每缸气门数(个)](attribute)是几个
+      - [2021款 1.5T 自动尊享版](car_series)的[排量(L)](attribute)是多少
+      - [2021款 1.5T 自动尊享版](car_series)的[燃料形式](attribute)是什么
+      - [2021款 1.5T 自动尊享版](car_series)[发动机](relationship)的[环保标准](attribute)是什么
+
+
+  - intent: resolve_entity
+    examples: |
+      - [1](mention)
+      - [3](mention)
+      - [2](mention)
+      - [4](mention)
+      - [5](mention)
+      - [6](mention)
+      - [7](mention)
+      - [8](mention)
+      - [9](mention)
+      - [10](mention)
+      - [第一个](mention)
+      - [最后一个](mention)
+      - [第二个](mention)
+      - [第三个](mention)
+      - [第四个](mention)
+      - [第五个](mention)
+      - [第六个](mention)
+      - [第七个](mention)
+      - [第八个](mention)
+      - [第九个](mention)
+      - [第十个](mention)
+      - [倒数第一个](mention)
+      - [倒数第二个](mention)
+      - [倒数第三个](mention)
+      - [倒数第四个](mention)
+      - [倒数第五个](mention)
+      - [倒数第六个](mention)
+      - [倒数第七个](mention)
+      - [倒数第八个](mention)
+      - [倒数第九个](mention)
+      - [倒数第十个](mention)
+
+  - synonym: 上汽大通MAXUS T70
+    examples: |
+      - 大通T70系列
+      - T70系列
+      - 上汽大通MAXUST70
+
+  - synonym: 插电式混合动力
+    examples: |
+      - 混合动力
+      - 混合能源
+
+  - synonym: 2021款 1.5T 自动尊享版
+    examples: |
+      - 新上市1.5T自动尊享版
+      - 今年的1.5T自动尊享版
+      - 21年的1.5T自动尊享版
+      - 21款1.5T自动尊享版
+
+
+  - synonym: '1'
+    examples: |
+      - 第一个
+      - 第一
+      - 倒数第十个
+  - synonym: '2'
+    examples: |
+      - 第二个
+      - 第二
+      - 倒数第九个
+  - synonym: '3'
+    examples: |
+      - 第三个
+      - 第三
+      - 倒数第八个
+  - synonym: '4'
+    examples: |
+      - 第四个
+      - 第四
+      - 倒数第七个
+  - synonym: '5'
+    examples: |
+      - 第五个
+      - 第五
+      - 倒数第六个
+  - synonym: '6'
+    examples: |
+      - 第六个
+      - 第六
+      - 倒数第五个
+  - synonym: '7'
+    examples: |
+      - 第七个
+      - 第七
+      - 倒数第四个
+  - synonym: '8'
+    examples: |
+      - 第八个
+      - 第八
+      - 倒数第三个
+  - synonym: '9'
+    examples: |
+      - 第九个
+      - 第九
+      - 倒数第二个
+  - synonym: '10'
+    examples: |
+      - 第十个
+      - 第十
+      - 倒数第一个
+      - 最后一个

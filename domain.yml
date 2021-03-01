@@ -1,0 +1,140 @@
+version: "2.0"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+
+intents:
+  - greet
+  - affirm
+  - bye
+  - deny
+  - help
+  - out_of_scope
+  - query_car_series
+  - query_car_series_to_car_model
+  - query_car_model_by_attribute
+  - query_attribute_in_car_model
+  - resolve_entity
+
+entities:
+  - attribute
+  - entity_type
+  - mention
+  - car_series
+  - car_model
+  - basic_parameter
+  - car_body
+  - wheel_brake
+  - engine
+  - energy_type
+  - chassis_steering
+  - transmission_case
+  - car_type
+  - time2market
+  - relationship
+
+
+
+slots:
+  attribute:
+    type: text
+    influence_conversation: false
+  entity_type:
+    type: text
+    influence_conversation: false
+  mention:
+    type: text
+    influence_conversation: false
+  car_series:
+    type: text
+    influence_conversation: false
+  car_model:
+    type: text
+    influence_conversation: false
+  basic_parameter:
+    type: text
+    influence_conversation: false
+  car_body:
+    type: text
+    influence_conversation: false
+  wheel_brake:
+    type: text
+    influence_conversation: false
+  energy_type:
+    type: text
+    influence_conversation: false
+  chassis_steering:
+    type: text
+    influence_conversation: false
+  transmission_case:
+    type: text
+    influence_conversation: false
+  car_type:
+    type: text
+    influence_conversation: false
+  engine:
+    type: text
+    influence_conversation: false
+  time2market:
+    type: text
+    influence_conversation: false
+  listed_items:
+    type: list
+    influence_conversation: false
+  relationship:
+    type: text
+    influence_conversation: false
+
+actions:
+  - utter_greet
+  - utter_bye
+  - utter_affirm
+  - utter_deny
+  - utter_out_of_scope
+  - utter_help
+  - utter_not_clear
+  - utter_no_list
+  - action_query_car_series
+  - action_query_car_series_to_car_model
+  - action_query_car_model_by_attribute
+  - action_query_attribute_in_car_model
+  - action_resolve_entity
+
+#forms:
+#  car_form:
+#    car_type:
+#      - type: from_entity
+#        entity: car_type
+#    car_part:
+#      - type: from_entity
+#        entity: car_part
+
+responses:
+  utter_greet:
+    - text: "您好，我是汽车配置查询员小通，有什么可以帮助您的？"
+  utter_affirm:
+    - text: "非常感谢您的肯定！"
+  utter_bye:
+    - text: "非常感谢您的使用，小通期待与你的下次相遇！"
+  utter_deny:
+    - text: "抱歉，没能解答您的问题，小通会持续改进！"
+  utter_help:
+    - text: "您好，我是汽车配置查询员小通，我可以查询大通的车系、车型，和车辆的基本配置参数！"
+  utter_out_of_scope:
+    - text: "非常抱歉，小通无法回答您的问题。"
+  utter_not_clear:
+    - text: "非常抱歉，小通没有听明白您的问题，可以麻烦您再问一遍吗？"
+  utter_no_list:
+    - text: "非常抱歉，小通没有找到相关的列表查询，请具体您的问题。"
+#  utter_ask_car_type:
+#    - text: "请输入查询的汽车型号"
+#  utter_ask_car_part:
+#    - text: "请输入要查询的汽车基本参数"
+  utter_answer:
+    - text: "{answer}"
+#  utter_wrong_answer:
+#    - text: "非常抱歉，小通并没有查到哦~"
+
+
