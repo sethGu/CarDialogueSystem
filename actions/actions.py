@@ -12,16 +12,13 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import json
 from typing import Text, Dict, Any, List, Union
-import os
+
 from rasa_sdk.events import SlotSet
 from rasa_sdk import Action, Tracker
 import re
 from schema import schema
 from graph_database import GraphDatabase
-import json
-import random
-import pandas as pd
-from FAQ.faq_match import FAQ_match
+
 
 # class ActionHelloWorld(Action):
 #
@@ -156,7 +153,9 @@ class ActionQueryattribute2carmodel(Action):
         energy_type = tracker.get_slot('energy_type')
         time2market = tracker.get_slot('time2market')
         listed_items = tracker.get_slot('listed_items')
-        reset_attribute = [SlotSet("car_body", None), SlotSet("energy_type", None), SlotSet("time2market", None)]
+        SlotSet("car_body", None)
+        SlotSet("energy_type", None)
+        SlotSet("time2market", None)
         attribute_dict = {}
         attribute_dict['body_structure'] = car_body
         attribute_dict['energy_type'] = energy_type
@@ -165,17 +164,7 @@ class ActionQueryattribute2carmodel(Action):
         else:
             attribute_dict['time2market'] = None
         graph_database = GraphDatabase()
-        print('********query car model by attribute************')
-        print(tracker.get_slot('car_body'))
-        print(attribute_dict)
-        print(tracker.latest_message)
         car_model_list = graph_database.query_attribute2entity(attribute_dict)
-        print(car_model_list)
-
-        if not car_model_list:
-            dispatcher.utter_message(text="没有符合条件的车型!")
-            return []
-
         dispatcher.utter_message(template="utter_answer",
                                  answer="小通一共找到" + str(len(car_model_list)) + "个车型，由于篇幅限制，为您列出以下几种：")
         car_model_list_slot = []
@@ -187,7 +176,7 @@ class ActionQueryattribute2carmodel(Action):
             car_model_list_slot.append(e)
         slots = [
             SlotSet("listed_items", car_model_list_slot)
-        ] + reset_attribute
+        ]
         return slots
 
 
@@ -257,50 +246,6 @@ class Actionresolve_entity(Action):
                     return []
 
 
-
-class Actionoffermorewhelp(Action):
-    def name(self) -> Text:
-        return "action_offermorehelp"
-    def run(
-        self,
-        dispatcher,
-        tracker: Tracker,
-        domain: "DomainDict",
-    ) -> List[Dict[Text, Any]]:
-        # faq_modle_dir = '../data/faq_data'
-        # faq_file = os.path.join(faq_modle_dir,'faqwithoutEntiy.xlsx')
-        #
-        path = os.path.dirname(__file__).split('/')[:-1]
-        newpath = '/'.join(path)
-        faq_file = os.path.join(newpath, 'data/faq_data/faqwithoutEntiy.xlsx')
-        faq_question = pd.read_excel(faq_file)
-        questions_list = []
-        for index, row in faq_question.iterrows():
-            questions_list.append(row['question'])
-        question = random.choice(questions_list)
-        replay = "你还可以问更多的问题哦，比如" + question
-        dispatcher.utter_message(text=replay)
-        return []
-
-
-class search_water(Action):
-    def name(self) -> Text:
-        return "action_search_FAQ"
-
-    def run(
-            self,
-            dispatcher,
-            tracker: Tracker,
-            domain: "DomainDict",
-    ) -> List[Dict[Text, Any]]:
-        Question_text = tracker.latest_message.get('text')
-        # dispatcher.utter_message(text=Question_text)
-        faq_match = FAQ_match()
-        result = faq_match.faq_match(Question_text)
-        # result = faq_match.judge_similar(Question_text, faq_match.faq_qus, faq_match.faq_ans)
-        message = result[1]
-        dispatcher.utter_message(text=message)
-        return []
 
 
 if __name__ == "__main__":

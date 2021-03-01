@@ -1,6 +1,10 @@
 version: "2.0"
 
 rules:
+  - rule: greet
+    steps:
+      - intent: greet
+      - action: utter_greet
 
   - rule: affirm
     steps:
@@ -12,7 +16,10 @@ rules:
       - intent: bye
       - action: utter_bye
 
-
+  - rule: deny
+    steps:
+      - intent: deny
+      - action: utter_deny
 
   - rule: help
     steps:
