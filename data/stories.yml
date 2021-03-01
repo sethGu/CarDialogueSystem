@@ -2,23 +2,14 @@ version: "2.0"
 
 stories:
 
-
-#- story: sad path 1
-#  steps:
-#  - intent: greet
-#  - action: utter_greet
-#  - intent: mood_unhappy
-#  - action: utter_cheer_up
-#  - action: utter_did_that_help
-#  - intent: affirm
-#  - action: utter_happy
-#
-#- story: sad path 2
-#  steps:
-#  - intent: greet
-#  - action: utter_greet
-#  - intent: mood_unhappy
-#  - action: utter_cheer_up
-#  - action: utter_did_that_help
-#  - intent: deny
-#  - action: utter_goodbye
+- story: ask FAQ
+  steps:
+  - intent: greet
+  - action: utter_introduce_myself
+  - intent: FAQ
+  - action: action_search_FAQ
+  - intent: FAQ
+  - action: action_search_FAQ
+  - action: action_offermorehelp
+  - intent: deny
+  - action: utter_good_bye
